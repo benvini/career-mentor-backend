@@ -1,0 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config();
+import app from "./app";
+import mongoose from "mongoose";
+
+console.log("ENV KEY:", process.env.OPENAI_API_KEY);
+const PORT = process.env.PORT || 4000;
+const MONGO_URI = process.env.MONGO_URI || "";
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => {
+    console.log("MongoDB connected");
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => console.error("MongoDB connection error:", err));
