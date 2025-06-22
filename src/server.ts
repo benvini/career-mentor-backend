@@ -3,7 +3,6 @@ dotenv.config();
 import app from "./app";
 import mongoose from "mongoose";
 
-console.log("ENV KEY:", process.env.OPENAI_API_KEY);
 const PORT = process.env.PORT || 4000;
 const MONGO_URI = process.env.MONGO_URI || "";
 

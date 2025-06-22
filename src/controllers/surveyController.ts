@@ -37,7 +37,10 @@ export const submitSurvey = async (
   try {
     const { answers } = req.body;
 
-    const aiPlan = await getCareerPlanFromAgent(answers);
+    const language = answers.language || "en";
+
+    const aiPlan = await getCareerPlanFromAgent(answers, language);
+
     const survey = await Survey.create({
       userId: req.userId,
       answers,

@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import User, { IUser } from "../models/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { log } from "console";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";
 
@@ -11,7 +10,6 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     const existing = await User.findOne({ email });
-    console.log(existing);
     if (existing) {
       res.status(400).json({ error: "User already exists" });
       return;
